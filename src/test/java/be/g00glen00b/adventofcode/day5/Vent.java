@@ -42,7 +42,7 @@ public class Vent {
     public int getLength() {
         if (isHorizontal() || (isDiagonal() && allowDiagonal)) return Math.abs(start.getX() - end.getX());
         else if (isVertical()) return Math.abs(start.getY() - end.getY());
-        else return 0;
+        else return -1;
     }
 
     public int getXDirection() {

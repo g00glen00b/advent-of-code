@@ -25,4 +25,18 @@ public class Day5Test {
             .reduce(Plot.empty(), Plot::withVent, unsupported());
         assertThat(plot.calculateOverlaps()).isEqualTo(expectedOutput);
     }
+
+    @ParameterizedTest
+    @CsvSource({
+        "/day5_part1_sample.txt,12",
+        "/day5_part1_full.txt,15463"
+    })
+    void part2(String fileLocation, int expectedOutput) throws URISyntaxException, IOException {
+        List<String> lines = readLines(fileLocation);
+        Plot plot = lines
+            .stream()
+            .map(line -> Vent.fromLine(true, line))
+            .reduce(Plot.empty(), Plot::withVent, unsupported());
+        assertThat(plot.calculateOverlaps()).isEqualTo(expectedOutput);
+    }
 }
