@@ -5,6 +5,7 @@ import lombok.Value;
 import java.util.Arrays;
 import java.util.Map;
 
+import static be.g00glen00b.adventofcode.TestUtils.streamNumbers;
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.*;
 
@@ -13,9 +14,7 @@ public class LanternfishPopulation {
     Map<Integer, Long> populationPerAge;
 
     public static LanternfishPopulation fromLine(String line) {
-        Map<Integer, Long> populationPerAge = Arrays
-            .stream(line.split(","))
-            .map(Integer::parseInt)
+        Map<Integer, Long> populationPerAge = streamNumbers(line)
             .collect(groupingBy(identity(), counting()));
         return new LanternfishPopulation(populationPerAge);
     }

@@ -1,7 +1,5 @@
 package be.g00glen00b.adventofcode.day6;
 
-import be.g00glen00b.adventofcode.day5.Plot;
-import be.g00glen00b.adventofcode.day5.Vent;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 

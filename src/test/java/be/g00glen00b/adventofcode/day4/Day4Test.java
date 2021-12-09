@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static be.g00glen00b.adventofcode.TestUtils.readLines;
+import static be.g00glen00b.adventofcode.TestUtils.streamNumbers;
 import static be.g00glen00b.adventofcode.TestUtils.unsupported;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,9 +22,7 @@ public class Day4Test {
     void part1(String fileLocation, int expectedOutput) throws URISyntaxException, IOException {
         List<String> lines = readLines(fileLocation);
         String numbers = lines.remove(0);
-        BingoBoards result = Arrays
-            .stream(numbers.split(","))
-            .map(Integer::parseInt)
+        BingoBoards result = streamNumbers(numbers)
             .reduce(BingoBoards.fromLines(lines), BingoBoards::mark, unsupported());
         assertThat(result
             .findWinner()
@@ -41,9 +40,7 @@ public class Day4Test {
     void part2(String fileLocation, int expectedOutput) throws URISyntaxException, IOException {
         List<String> lines = readLines(fileLocation);
         String numbers = lines.remove(0);
-        LastWinnerBingoBoards result = Arrays
-            .stream(numbers.split(","))
-            .map(Integer::parseInt)
+        LastWinnerBingoBoards result = streamNumbers(numbers)
             .reduce(LastWinnerBingoBoards.fromLines(lines), LastWinnerBingoBoards::mark, unsupported());
         assertThat(result
             .getLastWinner()
