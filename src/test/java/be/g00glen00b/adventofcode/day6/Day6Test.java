@@ -19,7 +19,7 @@ public class Day6Test {
         "/day6_part1_sample.txt,80,5934",
         "/day6_part1_full.txt,80,362666",
         "/day6_part1_sample.txt,256,26984457539",
-        "/day6_part1_full.txt,256,1640526601595L"
+        "/day6_part1_full.txt,256,1640526601595"
     })
     void part1(String fileLocation, int duration, long expectedOutput) throws URISyntaxException, IOException {
         List<String> lines = readLines(fileLocation);

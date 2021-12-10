@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 
+import static be.g00glen00b.adventofcode.TestUtils.calculateAverage;
+import static be.g00glen00b.adventofcode.TestUtils.calculateMedian;
 import static be.g00glen00b.adventofcode.TestUtils.readLines;
 import static be.g00glen00b.adventofcode.TestUtils.streamNumbers;
 import static java.util.stream.Collectors.toList;
@@ -42,25 +44,6 @@ public class Day7Test {
         int fuelCeil = calculateTotalGaussDistance(numbers, ceilAverage);
         int fuel = Math.min(fuelFloor, fuelCeil);
         assertThat(fuel).isEqualTo(expectedOutput);
-    }
-
-    private double calculateMedian(List<Integer> numbers) {
-        return numbers
-            .stream()
-            .mapToInt(Integer::intValue)
-            .sorted()
-            .skip((numbers.size() - 1) / 2)
-            .limit(2 - numbers.size() % 2)
-            .average()
-            .orElse(Double.NaN);
-    }
-
-    private double calculateAverage(List<Integer> numbers) {
-        return numbers
-            .stream()
-            .mapToInt(Integer::intValue)
-            .average()
-            .orElse(Double.NaN);
     }
 
     private int calculateTotalGaussDistance(List<Integer> numbers, int target) {

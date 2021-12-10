@@ -29,4 +29,23 @@ public class TestUtils {
             .stream(line.split(","))
             .map(Integer::parseInt);
     }
+
+    public static double calculateMedian(List<? extends Number> numbers) {
+        return numbers
+            .stream()
+            .mapToLong(Number::longValue)
+            .sorted()
+            .skip((numbers.size() - 1) / 2)
+            .limit(2 - numbers.size() % 2)
+            .average()
+            .orElse(Double.NaN);
+    }
+
+    public static double calculateAverage(List<? extends Number> numbers) {
+        return numbers
+            .stream()
+            .mapToLong(Number::longValue)
+            .average()
+            .orElse(Double.NaN);
+    }
 }
