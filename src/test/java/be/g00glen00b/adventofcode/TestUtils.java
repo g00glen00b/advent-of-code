@@ -7,6 +7,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -47,5 +48,20 @@ public class TestUtils {
             .mapToLong(Number::longValue)
             .average()
             .orElse(Double.NaN);
+    }
+
+    public static List<List<String>> splitLinesByEmptyLine(List<String> lines) {
+        List<List<String>> results = new ArrayList<>();
+        List<String> partialResults = new ArrayList<>();
+        for (String line : lines) {
+            if (line.isBlank() && !partialResults.isEmpty()) {
+                results.add(partialResults);
+                partialResults = new ArrayList<>();
+            } else if (!line.isBlank()) {
+                partialResults.add(line);
+            }
+        }
+        if (!partialResults.isEmpty()) results.add(partialResults);
+        return results;
     }
 }
