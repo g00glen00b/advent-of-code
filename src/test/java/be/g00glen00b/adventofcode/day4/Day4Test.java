@@ -16,8 +16,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class Day4Test {
     @ParameterizedTest
     @CsvSource({
-        "/day4_part1_sample.txt,4512",
-        "/day4_part1_full.txt,45031"
+        "/day4_sample.txt,4512",
+        "/day4_full.txt,45031"
     })
     void part1(String fileLocation, int expectedOutput) throws URISyntaxException, IOException {
         List<String> lines = readLines(fileLocation);
@@ -34,8 +34,8 @@ public class Day4Test {
 
     @ParameterizedTest
     @CsvSource({
-        "/day4_part1_sample.txt,1924",
-        "/day4_part1_full.txt,2568"
+        "/day4_sample.txt,1924",
+        "/day4_full.txt,2568"
     })
     void part2(String fileLocation, int expectedOutput) throws URISyntaxException, IOException {
         List<String> lines = readLines(fileLocation);
