@@ -12,8 +12,6 @@ import static java.util.stream.Collectors.toList;
 @Value
 public class TransparentPaper {
     List<Coordinate> marks;
-    int width;
-    int height;
 
     public TransparentPaper fold(FoldInstruction instruction) {
         List<Coordinate> newMarks = marks
@@ -22,9 +20,7 @@ public class TransparentPaper {
             .flatMap(Optional::stream)
             .distinct()
             .collect(toList());
-        int newWidth = instruction.isXType() ? instruction.getValue() : width;
-        int newHeight = instruction.isYType() ? instruction.getValue() : height;
-        return new TransparentPaper(newMarks, newWidth, newHeight);
+        return new TransparentPaper(newMarks);
     }
 
     private Optional<Coordinate> calculateCoordinateAfterFold(Coordinate coordinate, FoldInstruction instruction) {
@@ -45,23 +41,29 @@ public class TransparentPaper {
         return marks.size();
     }
 
-    private List<Coordinate> calculateAllCoordinates() {
-        return IntStream
-            .range(0, height)
-            .boxed()
-            .flatMap(y -> IntStream
-                .range(0, width)
-                .mapToObj(x -> new Coordinate(x, y)))
-            .collect(toList());
+    public int calculateWidth() {
+        return marks
+            .stream()
+            .mapToInt(Coordinate::getX)
+            .max()
+            .orElse(0) + 1;
+    }
+
+    public int calculateHeight() {
+        return marks
+            .stream()
+            .mapToInt(Coordinate::getY)
+            .max()
+            .orElse(0) + 1;
     }
 
     public void print() {
+        int width = calculateWidth();
+        int height = calculateHeight();
         IntStream
             .range(0, height)
-            .sorted()
             .mapToObj(y -> IntStream
                 .range(0, width)
-                .sorted()
                 .mapToObj(x -> new Coordinate(x, y))
                 .map(coordinate -> marks.contains(coordinate) ? "#" : " ")
                 .collect(Collectors.joining()))
@@ -73,22 +75,6 @@ public class TransparentPaper {
             .stream()
             .map(Coordinate::fromLine)
             .collect(toList());
-        return new TransparentPaper(marks, calculateWidth(marks), calculateHeight(marks));
-    }
-
-    private static int calculateWidth(List<Coordinate> marks) {
-        return marks
-            .stream()
-            .mapToInt(Coordinate::getX)
-            .max()
-            .orElse(0) + 1;
-    }
-
-    private static int calculateHeight(List<Coordinate> marks) {
-        return marks
-            .stream()
-            .mapToInt(Coordinate::getY)
-            .max()
-            .orElse(0) + 1;
+        return new TransparentPaper(marks);
     }
 }
