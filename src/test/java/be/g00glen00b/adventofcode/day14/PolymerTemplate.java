@@ -33,7 +33,6 @@ public class PolymerTemplate {
                 .map(count::withPair))
             .collect(groupingBy(PolymerPairCount::getPair, summingLong(PolymerPairCount::getCount)));
         return new PolymerTemplate(counts);
-
     }
 
     public static PolymerTemplate fromLine(String line) {
