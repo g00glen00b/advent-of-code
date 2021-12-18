@@ -68,7 +68,7 @@ public class Day18Test {
     @ParameterizedTest
     @CsvSource({
         "/day18_sample2.txt,3993",
-        "/day18_full.txt,0"
+        "/day18_full.txt,4735"
     })
     void partTwo(String fileLocation, int expectedOutput) throws URISyntaxException, IOException {
         List<String> values = readLines(fileLocation);
