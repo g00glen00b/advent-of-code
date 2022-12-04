@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 
-import static be.g00glen00b.adventofcode.TestUtils.readLines;
+import static codes.dimitri.adventofcode.TestUtils.readLines;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Day2Test {

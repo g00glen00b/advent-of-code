@@ -1,4 +1,4 @@
-package be.g00glen00b.adventofcode;
+package codes.dimitri.adventofcode;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -19,6 +19,19 @@ public class TestUtils {
         URL classpathResource = Objects.requireNonNull(TestUtils.class.getResource(fileLocation));
         Path sample = Paths.get(classpathResource.toURI());
         return Files.readAllLines(sample, Charset.defaultCharset());
+    }
+
+    public static <T> List<List<T>> splitByNumber(List<T> list, int numberOfElements) {
+        List<List<T>> results = new ArrayList<>();
+        List<T> temporyResults = new ArrayList<>();
+        for (int index = 0; index < list.size(); index++) {
+            temporyResults.add(list.get(index));
+            if ((index + 1) % numberOfElements == 0) {
+                results.add(temporyResults);
+                temporyResults = new ArrayList<>();
+            }
+        }
+        return results;
     }
 
     public static <T> BinaryOperator<T> unsupported() {
