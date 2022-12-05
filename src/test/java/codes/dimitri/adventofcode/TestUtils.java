@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.BinaryOperator;
+import java.util.stream.Collector;
 import java.util.stream.Stream;
 
 public class TestUtils {
@@ -76,5 +77,14 @@ public class TestUtils {
         }
         if (!partialResults.isEmpty()) results.add(partialResults);
         return results;
+    }
+
+    public static Collector<Character, StringBuilder, String> joiningCharacters() {
+        return Collector.of(
+            StringBuilder::new,
+            StringBuilder::append,
+            StringBuilder::append,
+            StringBuilder::toString
+        );
     }
 }
