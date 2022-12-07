@@ -69,8 +69,8 @@ public class Day7Test {
         int sum = rootDirectory
             .flattenDirectories()
             .stream()
-            .filter(directoryNode -> directoryNode.isAtMostSize(maximumSize))
             .mapToInt(DirectoryNode::calculateSize)
+            .filter(directorySize -> directorySize <= maximumSize)
             .sum();
         assertThat(sum).isEqualTo(expectedResult);
     }

@@ -66,10 +66,6 @@ public class DirectoryNode implements Node {
             .sum();
     }
 
-    public boolean isAtMostSize(int expectedSize) {
-        return calculateSize() <= expectedSize;
-    }
-
     public FileNode addFileNode(String name, int size) {
         FileNode child = new FileNode(this, name, size);
         children.add(child);
