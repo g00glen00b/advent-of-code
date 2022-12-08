@@ -16,8 +16,10 @@ public class DirectoryNode implements Node {
     private final String name;
     private final List<Node> children;
 
-    public static DirectoryNode root() {
-        return new DirectoryNode(null, "/", new ArrayList<>());
+    public static DirectoryNode wrappedRoot() {
+        DirectoryNode wrappedRoot = new DirectoryNode(null, null, new ArrayList<>());
+        DirectoryNode root = wrappedRoot.addDirectoryNode("/");
+        return wrappedRoot;
     }
 
     @Override
