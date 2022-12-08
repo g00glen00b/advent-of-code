@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.BinaryOperator;
+import java.util.function.LongBinaryOperator;
 import java.util.stream.Collector;
 import java.util.stream.Stream;
 
@@ -86,5 +87,9 @@ public class TestUtils {
             StringBuilder::append,
             StringBuilder::toString
         );
+    }
+
+    public static LongBinaryOperator longProduct() {
+        return (a, b) -> a * b;
     }
 }
